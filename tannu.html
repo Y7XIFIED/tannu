@@ -1,0 +1,1179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tannu Times</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Great+Vibes&family=Caveat:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose: #d65a8a;
+  --deep: #7e2a47;
+  --pink: #f39ab8;
+  --blush: #ffd6e6;
+  --light: #fff0f6;
+  --cream: #fdf6f0;
+  --paper: #f5ede0;
+  --dark: #1a0810;
+  --gold: #c9962a;
+  --mauve: #c56f91;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: #ffddeb;
+  overflow-x: hidden;
+  cursor: auto;
+  position: relative;
+}
+body::before{
+  content:'';
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(243,154,184,0.28), transparent 45%),
+    radial-gradient(circle at 80% 25%, rgba(214,90,138,0.22), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(255,214,230,0.35), transparent 48%);
+  animation: bgFloat 16s ease-in-out infinite alternate;
+}
+@keyframes bgFloat{
+  0% { transform: translate3d(-2%, -1%, 0) scale(1); filter: hue-rotate(0deg); }
+  100% { transform: translate3d(2%, 1%, 0) scale(1.08); filter: hue-rotate(8deg); }
+}
+header, section, footer { position: relative; z-index: 1; }
+/* Valentine card block */
+.valentine-section{
+  padding: 56px 20px 30px;
+  position: relative;
+  z-index: 10;
+}
+.valentine-card{
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+}
+.valentine-card img{
+  width: 100%;
+  display: block;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(126,42,71,0.2);
+}
+/* -- CUSTOM CURSOR -- */
+.cursor {
+  position: fixed;
+  width: auto; height: auto;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s ease;
+  font-size: 19px;
+  font-weight: 700;
+  color: #c7487b;
+  background: rgba(255, 238, 246, 0.78);
+  border: 1px solid rgba(214,90,138,0.28);
+  border-radius: 999px;
+  padding: 2px 10px 3px;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  font-family: 'Caveat', cursive;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.7), 0 0 10px rgba(214,90,138,.28);
+  box-shadow: 0 4px 14px rgba(126,42,71,0.12);
+}
+.cursor-dot {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.05s;
+}
+
+/* -- KISS MARKS FLOATING -- */
+.kiss-float {
+  position: fixed;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  animation: kissDrift linear infinite;
+}
+@keyframes kissDrift {
+  0%   { opacity:0; transform: translateY(0) rotate(var(--r)) scale(0.6); }
+  10%  { opacity: var(--op); }
+  85%  { opacity: var(--op); }
+  100% { opacity:0; transform: translateY(-110vh) rotate(calc(var(--r) + 30deg)) scale(1); }
+}
+
+/* -- PIXEL BOW SCATTER -- */
+.bow-scatter {
+  position: fixed;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  animation: bowFloat ease-in-out infinite;
+}
+@keyframes bowFloat {
+  0%,100% { opacity: 0.25; transform: translateY(0) rotate(var(--r)); }
+  50%     { opacity: 0.45; transform: translateY(-14px) rotate(calc(var(--r) + 5deg)); }
+}
+
+/* -- HERO / NEWSPAPER -- */
+.hero {
+  position: relative;
+  z-index: 10;
+  background: #ffd9ea;
+  border-bottom: 4px double var(--deep);
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+/* Halftone bg texture */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(192,67,110,0.08) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+
+.newspaper-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 16px 30px 10px;
+  border-bottom: 1px solid var(--deep);
+  font-family: 'Special Elite', serif;
+  font-size: 10px;
+  color: var(--deep);
+  opacity: 0.8;
+}
+
+.masthead-center {
+  text-align: center;
+  padding: 18px 20px 0;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* -- ANIMATED MASTHEAD LETTERS -- */
+.masthead-word {
+  display: inline-block;
+  overflow: hidden;
+}
+.masthead-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(60px) rotate(8deg);
+  animation: letterRise 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes letterRise {
+  to { opacity:1; transform: translateY(0) rotate(0deg); }
+}
+
+.masthead-the {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: clamp(22px, 5vw, 36px);
+  color: var(--rose);
+  display: block;
+  text-align: center;
+  opacity: 0;
+  animation: fadeSlide 0.6s ease 0.1s forwards;
+}
+@keyframes fadeSlide {
+  from { opacity:0; transform: translateY(-20px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+.masthead-main {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: clamp(32px, 8vw, 72px);
+  color: #2a0f18;
+  line-height: 1;
+  letter-spacing: -1px;
+  display: inline-block;
+}
+
+.masthead-times {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: clamp(30px, 7vw, 56px);
+  color: var(--rose);
+  display: block;
+}
+
+.masthead-rule-thick {
+  height: 3px;
+  background: var(--deep);
+  margin: 10px 0 3px;
+}
+.masthead-rule-thin {
+  height: 1px;
+  background: var(--deep);
+  margin-bottom: 10px;
+}
+
+.masthead-tagline {
+  font-family: 'Special Elite', serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--deep);
+  text-align: center;
+  padding: 6px 0;
+  border-top: 1px solid var(--deep);
+  border-bottom: 1px solid var(--deep);
+  margin: 0 30px;
+}
+
+/* Kiss image in hero corners */
+.hero-kiss {
+  position: absolute;
+  opacity: 0.18;
+  animation: kissWobble 4s ease-in-out infinite;
+}
+@keyframes kissWobble {
+  0%,100% { transform: rotate(var(--r)) scale(1); }
+  50%     { transform: rotate(calc(var(--r) + 8deg)) scale(1.05); }
+}
+
+/* -- HEADLINE SECTION -- */
+.headline-section {
+  position: relative;
+  z-index: 10;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-bottom: 2px double var(--deep);
+}
+.headline-section::after {
+  content: '';
+  position: absolute;
+  top: 40px; bottom: 40px; left: 50%;
+  width: 1px;
+  background: var(--deep);
+}
+
+.headline-col { padding: 0 24px; }
+
+.hl-kicker {
+  font-family: 'Special Elite', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--rose);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+
+.hl-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 900;
+  color: var(--deep);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hl-title em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+.hl-body {
+  font-family: 'Special Elite', serif;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #2a1018;
+  column-count: 1;
+}
+
+/* Pink highlight tape */
+.pink-tape {
+  display: inline;
+  background: rgba(243,154,184,0.42);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.yellow-tape {
+  display: inline;
+  background: rgba(255,206,230,0.78);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+/* VIP CARD SECTION */
+.vip-section {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(135deg, var(--blush), #fce0ea, var(--blush));
+  padding: 70px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+.vip-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(192,67,110,0.1) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.vip-card-wrap {
+  position: relative;
+  display: inline-block;
+  animation: cardSway 4s ease-in-out infinite;
+  cursor: pointer;
+  max-width: 340px;
+  width: 100%;
+}
+@keyframes cardSway {
+  0%,100% { transform: rotate(-1deg) translateY(0); }
+  50%     { transform: rotate(1.5deg) translateY(-8px); }
+}
+.vip-card-wrap:hover {
+  animation: none;
+  transform: rotate(0) scale(1.04) translateY(-6px);
+  transition: transform 0.3s ease;
+}
+
+/* Lanyard */
+.lanyard {
+  width: 4px;
+  height: 60px;
+  background: linear-gradient(180deg, #c0436e, #8b1a2e);
+  margin: 0 auto;
+  border-radius: 2px;
+  position: relative;
+}
+.lanyard::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; left: 50%;
+  transform: translateX(-50%);
+  width: 14px; height: 14px;
+  border: 2px solid #888;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.vip-img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 14px;
+  box-shadow: 0 16px 50px rgba(139,26,46,0.25), 0 4px 12px rgba(0,0,0,0.1);
+  display: block;
+  margin: 16px auto 0;
+}
+
+.vip-overlay {
+  position: absolute;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 232, 242, 0.95);
+  border: 1.5px solid var(--rose);
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--deep);
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 var(--blush);
+}
+
+/* RECEIPT SECTION */
+.receipt-section {
+  position: relative;
+  z-index: 10;
+  background: #ffdceb;
+  padding: 70px 20px;
+  overflow: hidden;
+}
+.receipt-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='2' fill='%23e8819a' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+.receipt-container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.receipt-img-wrap {
+  position: relative;
+}
+.receipt-img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--rose), 12px 12px 0 rgba(192,67,110,0.2);
+  transform: rotate(-2deg);
+  transition: transform 0.3s;
+}
+.receipt-img-wrap:hover .receipt-img { transform: rotate(0deg) scale(1.02); }
+
+/* Custom receipt paper */
+.receipt-paper {
+  background: #ffe9f3;
+  border-radius: 4px;
+  padding: 20px 18px;
+  font-family: 'Special Elite', serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  position: relative;
+}
+.receipt-paper::before,
+.receipt-paper::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 12px;
+  background: repeating-linear-gradient(
+    90deg, #ffeaf4 0px, #ffeaf4 12px,
+    #ffdbe9 12px, #ffdbe9 24px
+  );
+}
+.receipt-paper::before { top: -12px; }
+.receipt-paper::after  { bottom: -12px; }
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 1px solid rgba(126,42,71,0.2);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.receipt-store {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: var(--rose);
+}
+.receipt-sub {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #888;
+}
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #333;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(126,42,71,0.08);
+}
+.receipt-row .item { flex: 1; }
+.receipt-row .amt { font-weight: bold; color: var(--rose); }
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--deep);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 2px solid var(--deep);
+}
+.receipt-footer {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 10px;
+  color: #aaa;
+  border-top: 1px solid rgba(126,42,71,0.15);
+  padding-top: 8px;
+}
+.barcode {
+  font-family: 'Special Elite', serif;
+  font-size: 32px;
+  letter-spacing: -2px;
+  color: #333;
+  text-align: center;
+  margin-top: 6px;
+  line-height: 1;
+}
+
+/* LETTER SECTION - Diario Girls style */
+.letter-section {
+  position: relative;
+  z-index: 10;
+  background: #ffdfee;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+/* Big decorative bg text */
+.letter-section::before {
+  content: 'TANNU';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotate(-8deg);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(80px, 20vw, 200px);
+  font-weight: 900;
+  color: rgba(232,129,154,0.06);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 20px;
+}
+
+.diario-layout {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Diario-style big mixed typography */
+.diario-line1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(60px, 12vw, 110px);
+  font-weight: 900;
+  color: var(--dark);
+  line-height: 0.85;
+  letter-spacing: -3px;
+}
+.diario-insert {
+  display: inline-block;
+  background: var(--blush);
+  padding: 4px 16px;
+  font-family: 'Special Elite', serif;
+  font-size: clamp(14px, 2.5vw, 20px);
+  color: var(--deep);
+  border-radius: 4px;
+  vertical-align: middle;
+  margin: 0 8px;
+  transform: rotate(-2deg);
+}
+.diario-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(50px, 10vw, 90px);
+  color: var(--rose);
+  line-height: 1;
+  display: block;
+}
+
+/* Bow decoration from image */
+.bow-img-deco {
+  position: absolute;
+  opacity: 0.85;
+  animation: bowWobble 3s ease-in-out infinite;
+}
+@keyframes bowWobble {
+  0%,100% { transform: rotate(var(--r)) scale(1); }
+  50%     { transform: rotate(calc(var(--r) + 6deg)) scale(1.06); }
+}
+
+/* Kiss decorations */
+.kiss-deco {
+  position: absolute;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.letter-body-text {
+  font-family: 'Special Elite', serif;
+  font-size: 14px;
+  line-height: 2;
+  color: #333;
+  max-width: 520px;
+  margin: 30px 0;
+  column-count: 2;
+  column-gap: 30px;
+}
+.letter-body-text p { break-inside: avoid; margin-bottom: 12px; }
+
+/* Floating kiss marks around letter */
+.kiss-mark {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 4px;
+  animation: kissFloat 2s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+@keyframes kissFloat {
+  0%,100% { transform: translateY(0) rotate(-10deg); }
+  50%     { transform: translateY(-6px) rotate(10deg); }
+}
+
+/* SPARKLE on click */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  animation: sparklePop 0.7s ease forwards;
+}
+@keyframes sparklePop {
+  from { opacity:1; transform: scale(0) translateY(0); }
+  50%  { opacity:1; transform: scale(1.4) translateY(-20px); }
+  to   { opacity:0; transform: scale(0.6) translateY(-50px); }
+}
+
+/* FOOTER - NEW REDESIGN */
+.footer {
+  background: linear-gradient(135deg, #fff7fb 0%, #ffe8f2 55%, #fff1f7 100%);
+  border-top: 1px solid rgba(214,90,138,0.25);
+  padding: 52px 20px 58px;
+  position: relative;
+  overflow: hidden;
+}
+.memory-strip{
+  max-width: 980px;
+  margin: 34px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 16px;
+}
+.memory-card{
+  background: rgba(255, 233, 244, 0.9);
+  border: 1px solid rgba(214,90,138,0.25);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 10px 24px rgba(126,42,71,0.08);
+  transform: rotate(var(--rot));
+}
+.memory-card img{
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+.memory-caption{
+  margin-top: 8px;
+  font-family: 'Special Elite', serif;
+  font-size: 11px;
+  color: #6b3a4a;
+  line-height: 1.5;
+}
+.footer::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(214,90,138,0.08) 2px, transparent 2px);
+  background-size: 22px 22px;
+}
+.footer-shell{
+  max-width: 880px;
+  margin: 0 auto;
+  background: rgba(255, 232, 243, 0.92);
+  border: 1px solid rgba(214,90,138,0.28);
+  border-radius: 22px;
+  padding: 24px 20px;
+  box-shadow: 0 18px 34px rgba(126,42,71,0.08);
+}
+.footer-topline{
+  font-family: 'Special Elite', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8d4e62;
+  text-align: center;
+}
+.footer-main{
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 900;
+  color: var(--deep);
+  text-align: center;
+  line-height: 1.05;
+  margin-top: 8px;
+}
+.footer-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(26px, 4.6vw, 40px);
+  color: var(--rose);
+  text-align: center;
+  margin-top: 8px;
+  display: block;
+}
+.footer-pill-row{
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-pill{
+  border: 1px solid rgba(214,90,138,0.35);
+  background: #ffe8f2;
+  color: #6a3a4c;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-family: 'Special Elite', serif;
+  font-size: 11px;
+}
+.footer-close{
+  margin-top: 18px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #5a3040;
+  font-size: 15px;
+}
+
+/* SECTION LABEL */
+.sec-label {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.sec-label-text {
+  display: inline-block;
+  font-family: 'Special Elite', serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--mauve);
+  border-bottom: 1px solid var(--pink);
+  padding: 0 8px 4px;
+  background: rgba(255, 234, 244, 0.9);
+  border-radius: 999px;
+}
+
+/* SCROLL REVEAL */
+.reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.vis { opacity:1; transform:translateY(0); }
+
+@media(max-width:600px) {
+  .headline-section { grid-template-columns:1fr; }
+  .headline-section::after { display:none; }
+  .receipt-container { grid-template-columns:1fr; }
+  .letter-body-text { column-count:1; }
+  .memory-strip { grid-template-columns: 1fr; }
+}
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor, .cursor-dot { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  body::before { animation: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .kiss-float, .bow-scatter, .sparkle, .cursor, .cursor-dot { display: none !important; }
+}
+/* aesthetic-upgrade-pack */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.17;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:3;background:radial-gradient(circle at center, transparent 55%, rgba(126,42,71,.12) 100%)}
+.light-leak{position:fixed;width:44vw;height:44vw;border-radius:50%;filter:blur(40px);pointer-events:none;z-index:1;opacity:.22;animation:leakMove 14s ease-in-out infinite alternate}
+.light-leak.l1{left:-12vw;top:-10vw;background:radial-gradient(circle,#ffd2e3,transparent 70%)}
+.light-leak.l2{right:-12vw;bottom:-12vw;background:radial-gradient(circle,#ffc0d8,transparent 70%);animation-delay:2s}
+@keyframes leakMove{from{transform:translate(0,0) scale(1)}to{transform:translate(3vw,2vh) scale(1.08)}}
+.dust-wrap{position:fixed;inset:0;pointer-events:none;z-index:2}
+.dust{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.22;animation:dustFloat linear infinite}
+@keyframes dustFloat{from{transform:translateY(0)}to{transform:translateY(-120vh)}}
+section{background:transparent}
+section:nth-of-type(1){background:rgba(255,222,238,.45)}
+section:nth-of-type(2){background:rgba(255,215,235,.42)}
+section:nth-of-type(3){background:rgba(255,208,232,.4)}
+section:nth-of-type(4){background:rgba(255,220,240,.44)}
+section:nth-of-type(5){background:rgba(255,213,236,.43)}
+section::after{content:'';display:block;height:14px;margin-top:30px;background:repeating-linear-gradient(90deg,rgba(214,90,138,.2) 0 26px,transparent 26px 34px)}
+.sec-label{position:relative}
+.sec-label::before{content:'12 APR';position:absolute;left:12px;top:-14px;font:10px 'Special Elite',serif;color:#b36280;border:1px solid rgba(179,98,128,.35);border-radius:999px;padding:2px 8px;background:#ffe9f3;transform:rotate(-6deg)}
+.margin-note{position:absolute;font:12px 'Caveat',cursive;color:#9e4e6d;opacity:.85;transform:rotate(-7deg)}
+.wax-seal{display:inline-block;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ff9ec2,#bd426f 70%);box-shadow:inset 0 2px 8px rgba(255,255,255,.35),0 4px 10px rgba(126,42,71,.2);vertical-align:middle}
+.memory-card,.receipt-paper,.valentine-card{border-radius:18px;position:relative}
+.memory-card::before,.receipt-paper::before{box-shadow:0 0 0 1px rgba(214,90,138,.18) inset}
+.memory-card::after{content:'';position:absolute;top:-8px;left:18px;width:68px;height:16px;background:rgba(255,244,180,.72);border:1px solid rgba(200,180,100,.2);transform:rotate(-6deg)}
+.photo-polaroid{background:#ffeef6;padding:12px 12px 26px;border-radius:8px;box-shadow:0 10px 22px rgba(126,42,71,.12)}
+.memory-card:hover{filter:contrast(1.03) saturate(1.04)}
+.postmark{position:absolute;right:8px;top:8px;font:10px 'Special Elite',serif;color:#ba5e81;border:1px solid rgba(217,138,167,.7);border-radius:50%;width:52px;height:52px;display:grid;place-items:center;opacity:.65}
+.masthead-main{background:none;-webkit-background-clip:initial;background-clip:initial;color:#2a0f18;text-shadow:none}
+.foil{background:linear-gradient(120deg,#ffd7ea,#fff7cc,#ffd7ea);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foilShift 4.5s linear infinite}
+@keyframes foilShift{to{background-position:200% center}}
+.cursor{box-shadow:0 0 16px rgba(214,90,138,.45)}
+.vip-card-wrap{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.08) 0 3px,transparent 3px 6px)}
+.receipt-row .item::before{content:'♥ ';color:#d65a8a}
+.ribbon-tab{display:inline-block;background:#e86f9a;color:#fff;border-radius:8px 8px 8px 0;padding:5px 10px;font:11px 'Special Elite',serif;transform:rotate(-4deg)}
+.decor-divider{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 20px}.decor-divider::before,.decor-divider::after{content:'';height:1px;width:80px;background:#d98aa7}.decor-divider span{font-size:16px}
+.quote-curve{background:#ffe8f2;border:1px solid rgba(214,90,138,.25);border-radius:24px;padding:10px 16px;display:inline-block}
+.footer-close.quote-curve{display:table;margin:18px auto 0;text-align:center}
+.name-squiggle{text-decoration:underline wavy #d65a8a;text-underline-offset:3px}
+a:hover{text-shadow:0 0 8px rgba(255,153,200,.45)}
+.hero-bokeh{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 20% 30%,rgba(255,255,255,.28),transparent 28%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.22),transparent 26%)}
+.envelope-flap{position:relative}.envelope-flap::before{content:'';position:absolute;top:-14px;left:0;right:0;margin:auto;width:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:14px solid rgba(214,90,138,.25)}
+.icon-set{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0}.icon-pill{padding:5px 10px;border:1px solid rgba(214,90,138,.3);border-radius:999px;background:#ffeef6;font:11px 'Special Elite',serif;color:#8d4e62}
+.airmail{border:2px solid rgba(214,90,138,.28)}
+.fold-corner::after{content:'';position:absolute;right:0;top:0;border-width:0 26px 26px 0;border-style:solid;border-color:transparent rgba(214,90,138,.2) transparent transparent}
+.stamp-btn{border-radius:10px;padding:8px 14px;border:1px solid rgba(215,125,159,.65);background:#ffe7f1;color:#7d3852;font:12px 'Special Elite',serif;cursor:pointer}
+.badge-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px;background:#fff0f7;border:1px solid rgba(214,90,138,.28);font:11px 'Special Elite',serif}
+.cassette{max-width:280px;margin:18px auto;background:#ffe5f0;border:1px solid rgba(214,90,138,.35);border-radius:12px;padding:10px;box-shadow:0 8px 16px rgba(126,42,71,.12)}
+.cassette .w{height:7px;background:linear-gradient(90deg,#b65d7f,#d98aa7);margin:8px 0;border-radius:4px}
+.timeline{max-width:860px;margin:30px auto;display:grid;gap:12px}.timeline-item{background:#ffeaf4;border:1px solid rgba(214,90,138,.28);padding:12px;border-radius:12px;font:13px 'Special Elite',serif;color:#6a3a4c}
+.scrapbook{max-width:900px;margin:20px auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.scrap{background:#ffeef6;border:1px solid rgba(214,90,138,.25);border-radius:10px;padding:10px;font:12px 'Caveat',cursive;color:#7d4560;transform:rotate(var(--r))}
+.neon-love{outline:2px solid rgba(255,184,219,.65);box-shadow:0 0 14px rgba(255,184,219,.45);border-radius:8px;padding:2px 6px}
+.mobile-stickers{display:none}
+@media (max-width:700px){.scrapbook{grid-template-columns:1fr 1fr}.mobile-stickers{display:flex;gap:8px;justify-content:center;margin:10px 0}.mobile-stickers span{background:#ffeef6;border:1px solid rgba(214,90,138,.3);border-radius:999px;padding:4px 10px;font:11px 'Special Elite',serif;color:#8a4a64}}</style>
+</head>
+<body>
+
+
+<div class="light-leak l1"></div><div class="light-leak l2"></div><div class="dust-wrap" id="dustWrap"></div><div class="vignette"></div>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cur">TANNU</div>
+<div class="cursor-dot" id="curDot"></div>
+
+<!-- --- HERO: THE TANNU TIMES --- -->
+<header class="hero" id="hero"><div class="hero-bokeh"></div>
+
+  <!-- Kiss mark corner decorations -->
+  <img src="assets/kiss-user.jpg" class="hero-kiss" style="--r:-15deg; width:100px; top:30px; left:30px;">
+  <img src="assets/kiss-user.jpg" class="hero-kiss" style="--r:20deg; width:80px; top:40px; right:40px; animation-delay:1.5s;">
+  <img src="assets/kiss-user.jpg" class="hero-kiss" style="--r:-5deg; width:70px; bottom:60px; left:60px; animation-delay:0.8s;">
+  <img src="assets/kiss-user.jpg" class="hero-kiss" style="--r:12deg; width:90px; bottom:50px; right:30px; animation-delay:2s;">
+
+  <!-- Pixel bows -->
+  <img src="assets/bow-user.jpg" style="position:absolute; width:48px; top:20px; left:50%; transform:translateX(-80px); opacity:0.5; animation: bowWobble2 3s ease-in-out infinite;" class="bow-scatter-static">
+  <img src="assets/bow-user.jpg" style="position:absolute; width:40px; top:20px; left:50%; transform:translateX(40px); opacity:0.45; animation: bowWobble2 4s ease-in-out infinite reverse;" class="bow-scatter-static">
+
+  <div class="newspaper-top">
+    <span>Tannu's World  -  Est. Forever</span>
+    <span></span>
+    <span>Y7XIFIED</span>
+  </div>
+
+  <div class="masthead-center">
+    <span class="masthead-main" id="mastheadLine"></span> <span class="wax-seal"></span>
+  </div>
+
+  <p class="masthead-tagline">I didn't plan this, but now my heart only picks you.</p>
+</header>
+
+<!-- --- HEADLINE COLUMNS --- -->
+<section class="headline-section">
+  <div class="headline-col reveal">
+    <span class="hl-kicker">From My Heart</span>
+    <h2 class="hl-title">I Love <em>My Girl Tannu</em> More Every Day</h2>
+    <p class="hl-body">
+      This is simple and true: <span class="pink-tape">I love you deeply.</span>
+      Not for one mood, not for one season, not only when life is easy.
+      I love your whole heart, your laugh, your courage, and the way you make ordinary days feel alive.<br><br>
+      Even on quiet days, my feelings do not fade.
+      They grow softer, stronger, and more certain.
+      With you, love feels real, steady, and <span class="yellow-tape">never ending.</span>
+    </p>
+  </div>
+  <div class="headline-col reveal" style="transition-delay:0.2s;">
+    <span class="hl-kicker">Promise</span>
+    <h2 class="hl-title">My Love Is <em>Forever Yours</em>, Tannu</h2>
+    <p class="hl-body">
+      I am not writing this to sound perfect. I am writing this because it is honest:
+      <span class="pink-tape">I choose you, every time.</span>
+      In happy moments, in hard moments, in all the normal little moments in between.<br><br>
+      I want to keep showing up for you with patience, respect, care, and loyalty.
+      No games, no pretending, no half-love.
+      Just us, real and true, <span class="yellow-tape">for the long run.</span>
+    </p>
+  </div>
+</section>
+
+<!-- --- RECEIPT SECTION --- -->
+<section class="receipt-section">
+  <div class="sec-label reveal"><span class="ribbon-tab">love mail</span>
+    <span class="sec-label-text">* reasons i love you *</span>
+  </div>
+
+  <div class="receipt-container">
+    <div class="receipt-img-wrap reveal">
+      <img src="assets/kiss-user.jpg" class="receipt-img" alt="Receipt aesthetic">
+<!-- Pixel bow over receipt -->
+      <img src="assets/bow-user.jpg" style="position:absolute; width:60px; top:-20px; right:-10px; opacity:0.8; animation:bowWobble2 3s ease-in-out infinite;">
+    </div>
+
+    <div class="reveal" style="transition-delay:0.2s;">
+      <div class="receipt-paper envelope-flap fold-corner airmail">
+        <div class="receipt-header">
+          <div class="receipt-store">My Love Note</div>
+          <div class="receipt-sub">This is real - and it stays</div>
+        </div>
+        <div class="receipt-row"><span class="item">01  -  The way you care for people</span><span class="amt">Always</span></div>
+        <div class="receipt-row"><span class="item">02  -  Your smile when you are happy</span><span class="amt">Always</span></div>
+        <div class="receipt-row"><span class="item">03  -  Your heart, soft but strong</span><span class="amt">Always</span></div>
+        <div class="receipt-row"><span class="item">04  -  Your honesty</span><span class="amt">Always</span></div>
+        <div class="receipt-row"><span class="item">05  -  Your laugh</span><span class="amt">Always</span></div>
+        <div class="receipt-row"><span class="item">06  -  Simply you</span><span class="amt">Always</span></div>
+        <div class="receipt-total"><span class="neon-love">total devotion</span>
+          <span>TOTAL:</span><span>MY WHOLE HEART</span>
+        </div>
+        <div class="receipt-footer">
+          TO: TANNU  -  FROM: YUGANK, WITH LOVE<br>
+          <div class="barcode">LOVE LETTER</div>
+          LOVE-THAT-STAYS-001
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="decor-divider"><span>🎀</span></div><div class="memory-strip reveal" style="transition-delay:0.25s;">
+    <figure class="memory-card photo-polaroid fold-corner" style="--rot:-1.5deg;">
+      <img src="assets/postcard-custom.png" alt="Valentine postcard">
+<figcaption class="memory-caption">A postcard for you - because my love for you is something I want to write down again and again.</figcaption>
+    </figure>
+    <figure class="memory-card photo-polaroid fold-corner" style="--rot:1deg;">
+      <img src="assets/playlist-custom.png" alt="Playlist love note">
+<figcaption class="memory-caption">A little playlist of feelings - every song reminding me of you in a different way.</figcaption>
+    </figure>
+    <figure class="memory-card photo-polaroid fold-corner" style="--rot:-0.8deg;">
+      <img src="assets/greetings-custom.png" alt="Greetings card">
+<figcaption class="memory-caption">A note for your heart - to remind you that you are loved, deeply and for a long time.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- --- LETTER: DIARIO GIRLS STYLE --- -->
+<section class="letter-section">
+  
+  <!-- Bow decorations using real images -->
+  <img src="assets/bow-user.jpg" class="bow-img-deco" style="--r:-12deg; width:90px; top:30px; right:60px; transition-delay:0s;">
+  <img src="assets/bow-user.jpg" class="bow-img-deco" style="--r:8deg; width:60px; bottom:60px; left:40px; animation-delay:1.5s;">
+  
+  <!-- Kiss mark decorations -->
+  <img src="assets/kiss-user.jpg" class="kiss-deco" style="width:80px; top:20px; left:40px; transform:rotate(-20deg);">
+  <img src="assets/kiss-user.jpg" class="kiss-deco" style="width:60px; bottom:40px; right:50px; transform:rotate(15deg);">
+
+  <div class="diario-layout">
+    <div class="reveal">
+      <!-- Diario Girls mixed typography -->
+      <div class="diario-line1">My <div class="diario-insert">heart</div></div>
+      <div class="diario-script">Tannu,</div>
+      
+      <div style="display:flex; align-items:center; gap:10px; margin: 8px 0 24px; flex-wrap:wrap;">
+        <img src="assets/kiss-user.jpg" style="width:36px; opacity:0.7; animation:kissFloat 2s ease-in-out infinite; --d:0s;">
+        <span style="font-family:'Special Elite',serif; font-size:11px; letter-spacing:3px; color:var(--mauve); text-transform:uppercase;">a real promise, for you</span>
+        <img src="assets/kiss-user.jpg" style="width:28px; opacity:0.6; animation:kissFloat 2.5s ease-in-out infinite; --d:0.5s;">
+      </div>
+    </div>
+
+    <div class="letter-body-text reveal" style="transition-delay:0.2s;">
+      <p>You did not just enter my life. You changed its rhythm.
+      The way I think, the way I pray, the way I imagine tomorrow.
+      <span class="pink-tape">You became my home.</span></p>
+      
+      <p>I love your laugh when you forget to be careful.
+      I love your eyes when you are excited.
+      I love how strong you are, and how gentle you still choose to be.</p>
+      
+      <p><span class="yellow-tape">You make life feel fuller.</span>
+      You turn ordinary moments into memories I never want to lose.
+      Even silence with you feels meaningful.</p>
+      
+      <p>I cannot promise a perfect life, but I can promise a real one.
+      Honest love, steady effort, and a heart that keeps choosing you.
+      <span class="pink-tape">I love you now, and I will love you for a long, long time.</span></p>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.4s; display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+      <div style="font-family:'Great Vibes',cursive; font-size:48px; color:var(--rose);">
+        Forever yours,<br>the one who loves you
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <img src="assets/kiss-user.jpg" style="width:56px; opacity:0.85; transform:rotate(-8deg); animation: kissFloat 2s ease-in-out infinite; --d:0.3s;">
+        <img src="assets/bow-user.jpg" style="width:64px; opacity:0.8; animation: bowWobble 3s ease-in-out infinite; --r:5deg;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --- VALENTINE QUESTION CARD --- -->
+<section class="valentine-section">
+  <div class="sec-label reveal"><span class="ribbon-tab">love mail</span>
+    <span class="sec-label-text">* little question for you *</span>
+  </div>
+  <div class="valentine-card reveal" style="transition-delay:0.15s;">
+    <img src="assets/valentine-question.jpg" alt="Valentine question card">
+</div>
+</section>
+
+<!-- --- FOOTER --- -->
+<footer class="footer">
+  <div class="footer-shell reveal">
+    <div class="footer-topline">sealed with love</div>
+    <div class="footer-main">FOREVER MINE</div>
+    <span class="footer-script">Tannu, always and only you</span>
+    <p class="footer-close quote-curve" style="margin-left:auto; margin-right:auto;">I didn’t plan this, but now my heart only picks you.</p>
+  </div>
+</footer>
+
+<script>
+// -- CURSOR --
+const cur = document.getElementById('cur');
+const curDot = document.getElementById('curDot');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+  curDot.style.left = e.clientX + 'px';
+  curDot.style.top = e.clientY + 'px';
+});
+
+// -- ANIMATE MASTHEAD LETTERS --
+function animateWord(elId, word, baseDelay) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  el.innerHTML = '';
+  word.split('').forEach((ch, i) => {
+    const span = document.createElement('span');
+    span.className = 'masthead-letter';
+    span.textContent = ch === ' ' ? ' ' : ch;
+    span.style.animationDelay = (baseDelay + i * 0.08) + 's';
+    el.appendChild(span);
+  });
+}
+animateWord('mastheadLine', 'The Tannu Times', 0.3);
+
+// -- FLOATING KISS MARKS --
+const kissB64 = "assets/kiss-user.jpg";
+// Use CSS positioned kiss marks that drift upward
+function spawnKiss() {
+  const el = document.createElement('img');
+  el.src = "assets/kiss-user.jpg";
+  el.className = 'kiss-float';
+  const size = 30 + Math.random() * 50;
+  el.style.cssText = `
+    width:${size}px;
+    left:${Math.random()*95}vw;
+    bottom:0;
+    --r:${(Math.random()-0.5)*40}deg;
+    --op:${0.12 + Math.random()*0.18};
+    animation-duration:${8 + Math.random()*10}s;
+    animation-delay:${Math.random()*8}s;
+  `;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 20000);
+}
+for (let i = 0; i < 12; i++) spawnKiss();
+setInterval(spawnKiss, 3000);
+
+// -- FLOATING PIXEL BOWS --
+function spawnBow() {
+  const el = document.createElement('img');
+  el.src = "assets/bow-user.jpg";
+  el.className = 'bow-scatter';
+  const size = 24 + Math.random() * 36;
+  el.style.cssText = `
+    width:${size}px;
+    left:${Math.random()*90}vw;
+    top:${Math.random()*85}vh;
+    --r:${(Math.random()-0.5)*30}deg;
+    animation-duration:${3 + Math.random()*4}s;
+    animation-delay:${Math.random()*3}s;
+  `;
+  document.body.appendChild(el);
+}
+// -- SPARKLE ON CLICK --
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReducedMotion) { for (let i = 0; i < 8; i++) spawnBow(); }
+
+document.addEventListener('click', e => {
+  if (prefersReducedMotion) return;
+  const emojis = ["💗","🩷","💖","💞","💘"];
+  for (let i = 0; i < 5; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    s.style.cssText = `left:${e.clientX + (Math.random()-0.5)*40}px;top:${e.clientY + (Math.random()-0.5)*40}px;font-size:${16+Math.random()*14}px;animation-delay:${Math.random()*0.3}s;`;
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 900);
+  }
+});
+
+// -- VIP CARD CLICK --
+function cardClick(el) {
+  if (prefersReducedMotion) return;
+  el.style.animation = 'none';
+  el.style.transform = 'rotate(0) scale(1.08)';
+  setTimeout(() => {
+    el.style.transform = '';
+    el.style.animation = '';
+  }, 600);
+  // Confetti
+  const colors = ['#e8819a','#f5c8d4','#e8b86d','#c0436e','#fff','#f0d0e0'];
+  const rect = el.getBoundingClientRect();
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement('div');
+    const ang = Math.random() * 360;
+    const dist = 80 + Math.random() * 200;
+    c.style.cssText = `position:fixed;left:${rect.left+rect.width/2}px;top:${rect.top+rect.height/3}px;
+      width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+      pointer-events:none;z-index:99999;
+      animation:confFall ${0.8+Math.random()*1}s ease forwards;
+      animation-delay:${Math.random()*0.3}s;
+      --tx:${Math.cos(ang*Math.PI/180)*dist}px;
+      --ty:${Math.sin(ang*Math.PI/180)*dist}px;`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 2000);
+  }
+}
+
+const vipCard = document.querySelector('.vip-card-wrap');
+if (vipCard) {
+  vipCard.addEventListener('click', () => cardClick(vipCard));
+  vipCard.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      cardClick(vipCard);
+    }
+  });
+}
+const confStyle = document.createElement('style');
+confStyle.textContent = `
+@keyframes confFall{to{transform:translate(var(--tx),var(--ty)) rotate(720deg) scale(0);opacity:0}}
+@keyframes bowWobble2{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg) scale(1.05)}}
+`;
+document.head.appendChild(confStyle);
+
+// -- SCROLL REVEAL --
+const revealEls = document.querySelectorAll('.reveal');
+if (prefersReducedMotion) {
+  revealEls.forEach(el => el.classList.add('vis'));
+} else {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+    });
+  }, {threshold:0.1});
+  revealEls.forEach(el => obs.observe(el));
+}
+// aesthetic-upgrade-pack
+(function(){setTimeout(()=>intro && intro.classList.add('hide'),900);
+  const dustWrap=document.getElementById('dustWrap');
+  if(dustWrap){for(let i=0;i<70;i++){const d=document.createElement('span');d.className='dust';d.style.left=(Math.random()*100)+'vw';d.style.top=(Math.random()*120)+'vh';d.style.animationDuration=(10+Math.random()*18)+'s';d.style.animationDelay=(Math.random()*8)+'s';dustWrap.appendChild(d);}}
+  const hero=document.getElementById('hero');
+  const heroDecor=document.querySelectorAll('.hero-kiss,.bow-scatter-static');
+  document.addEventListener('mousemove',e=>{if(!hero) return; const r=hero.getBoundingClientRect(); const x=(e.clientX-r.left-r.width/2)/r.width; const y=(e.clientY-r.top-r.height/2)/r.height; heroDecor.forEach((el,i)=>{el.style.transform=`translate(${x*(8+i)}px,${y*(8+i)}px)`;});});
+  document.querySelectorAll('.memory-card').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(); const rx=((e.clientY-r.top)/r.height-.5)*-6; const ry=((e.clientX-r.left)/r.width-.5)*8; card.style.transform=`rotate(${card.style.getPropertyValue('--rot')||'0deg'}) perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg)`;}); card.addEventListener('mouseleave',()=>card.style.transform='rotate(var(--rot))');});})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
