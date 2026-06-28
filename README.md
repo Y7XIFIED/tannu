@@ -1,42 +1,9 @@
-# Tannu
-**Romantic visuals, soft motion, one immersive story page.**
+﻿<h3 align="center"><b>TANNU</b></h3>
+<p align="center"><img src="https://skillicons.dev/icons?i=html,css,js,react,vite,tailwind" /></p>
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/Y7XIFIED/tannu/actions)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-informational)](https://github.com/Y7XIFIED/tannu/releases)
+Welcome to **tannu**! This is a fun and engaging project built to provide an amazing experience!
 
-## Features
-- Single-page storytelling layout with layered card-style sections
-- Ambient animated background and visual polish effects
-- Custom cursor interactions and playful micro-animations
-- Responsive behavior for desktop and mobile screens
-- Pure frontend stack with no build tooling required
+## ðŸš€ Live Website
+Experience the fully interactive website live here: https://tannui.vercel.app
 
-## Installation
-1. Clone the repository.
-
-```bash
-git clone https://github.com/Y7XIFIED/tannu.git
-```
-
-2. Move into the project folder.
-
-```bash
-cd tannu
-```
-
-3. Run with a simple static server (recommended).
-
-```bash
-npx serve .
-```
-
-## Usage
-Open the served local URL in your browser, or open `index.html` / `tannu.html` directly for quick preview.
-
-## Live Demo
-[https://tannui.vercel.app](https://tannui.vercel.app)
-
-## License
-This project is licensed under the **MIT License**.  
-See the [LICENSE](LICENSE) file for details.
+<div align="center"><p>Y7XIFIED</p></div>
