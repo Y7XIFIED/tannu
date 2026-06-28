@@ -32,38 +32,8 @@ Interact dynamically with your mouse or touch to explore the visual effects! Mov
 ## 📂 Project Structure
 ```text
 tannu/
-├── .gitignore
-├── .vercel
-│   ├── project.json
-│   └── README.txt
-├── assets
-│   ├── bow-user.jpg
-│   ├── branding-reference.jpg
-│   ├── cat-burnout.jpg
-│   ├── cat-flowers-reference.jpg
-│   ├── collage-reference.jpg
-│   ├── greetings-card-tannu.jpg
-│   ├── greetings-card.jpg
-│   ├── greetings-custom.png
-│   ├── kiss-mark.jpg
-│   ├── kiss-user-tannu.jpg
-│   ├── kiss-user.jpg
-│   ├── pink-bow-3d.jpg
-│   ├── pink-bow-pixel.jpg
-│   ├── playlist-custom.png
-│   ├── playlist-note-tannu.jpg
-│   ├── playlist-note.jpg
-│   ├── postcard-custom.png
-│   ├── receipt-reference.jpg
-│   ├── typeface-reference.jpg
-│   ├── valentine-question-tannu.jpg
-│   ├── valentine-question.jpg
-│   ├── valentines-postcard-tannu.jpg
-│   ├── valentines-postcard.jpg
-│   └── vip-access-reference.jpg
-├── index.html
-├── README.md
-└── tannu.html
+├── .vercel/
+└── assets/
 ```
 
 ## 💻 Tech Stack
