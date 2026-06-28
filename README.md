@@ -30,11 +30,16 @@ Interact dynamically with your mouse or touch to explore the visual effects! Mov
    ```
 
 ## 📂 Project Structure
-```text
-tannu/
-├── .vercel/
-└── assets/
-```
+
+- 📁 **.vercel/**
+- 📁 **assets/**
+- 📁 **components/**
+- 📁 **scripts/**
+- 📁 **styles/**
+- 📄 `.gitignore`
+- 📄 `index.html`
+- 📄 `README.md`
+- 📄 `tannu.html`
 
 ## 💻 Tech Stack
 HTML5 & CSS3: Structural vectors and custom styling variables.
